@@ -54,14 +54,33 @@ namespace DungeonGenerator.Managers
         private IEnumerator SetRoomTypes()
         {
             print("Setting room types.");
-            foreach (var room in roomManagers)
+            while (combatRooms.Count + bossRooms.Count + itemRooms.Count != dungeonData.AllRooms-1)
             {
-                if (room.position == startingPosition)
+                roomManagers[0].SetRoomType(RoomType.Empty);
+                if (bossRooms.Count != dungeonData.BossRooms)
                 {
-                    room.SetRoomType(RoomType.Empty);
-                    continue;
+                    var roomIndex = Random.Range(1, roomManagers.Count);
+                    var room = roomManagers[roomIndex];
+                    room.SetRoomType(RoomType.Boss);
+                    bossRooms.Add(room);
+                    roomManagers.Remove(room);
                 }
-                
+                if (itemRooms.Count != dungeonData.ItemRooms)
+                {
+                    var roomIndex = Random.Range(1, roomManagers.Count);
+                    var room = roomManagers[roomIndex];
+                    room.SetRoomType(RoomType.Item);
+                    itemRooms.Add(room);
+                    roomManagers.Remove(room);
+                }
+                if (combatRooms.Count != dungeonData.CombatRooms)
+                {
+                    var roomIndex = Random.Range(1, roomManagers.Count);
+                    var room = roomManagers[roomIndex];
+                    room.SetRoomType(RoomType.Combat);
+                    combatRooms.Add(room);
+                    roomManagers.Remove(room);
+                }
                 yield return new WaitForSeconds(dungeonStep ? dungeonStepDuration : 0f);
             }
         }
