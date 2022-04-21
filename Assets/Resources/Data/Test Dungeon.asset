@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffcd8d9680a94328b94f1e6ded534c03, type: 3}
   m_Name: Test Dungeon
   m_EditorClassIdentifier: 
-  combatRooms: 5
+  startingRoom: 1
+  combatRooms: 15
   bossRooms: 1
-  itemRooms: 1
+  itemRooms: 5

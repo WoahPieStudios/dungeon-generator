@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DungeonGenerator.Extensions;
+using UnityEngine;
 
 namespace DungeonGenerator.Data
 {
@@ -9,6 +10,8 @@ namespace DungeonGenerator.Data
     public class DungeonData : ScriptableObject
     {
         [Header("Room Details")]
+        [SerializeField, ReadOnly, Tooltip("The number of starting rooms. This is where the player will spawn.")]
+        private int startingRoom = 1;
         [SerializeField, Tooltip("The number of combat rooms. All enemies inside these rooms need to be killed in order to proceed.")]
         private int combatRooms;
         [SerializeField, Tooltip("The number of boss rooms. Only one room will be selected as the end of the dungeon.")]
@@ -43,6 +46,6 @@ namespace DungeonGenerator.Data
         /// <summary>
         /// The number of all rooms in the dungeon.
         /// </summary>
-        public int AllRooms => combatRooms + bossRooms + itemRooms;
+        public int AllRooms => startingRoom + combatRooms + bossRooms + itemRooms;
     }
 }
