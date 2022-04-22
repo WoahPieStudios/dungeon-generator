@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffcd8d9680a94328b94f1e6ded534c03, type: 3}
   m_Name: Test Dungeon
   m_EditorClassIdentifier: 
+  randomJump: 0
   startingRoom: 1
   combatRooms: 10
-  bossRooms: 3
-  bossDungeonRange: 0.865
-  itemRooms: 7
+  bossRooms: 1
+  bossDungeonRange: 0.95
+  itemRooms: 4

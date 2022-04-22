@@ -19,7 +19,7 @@ namespace DungeonGenerator.Managers
         [SerializeField] private RoomObject roomPrefab;
         
         [Header("Lists")]
-        private readonly List<Vector2> _roomPositions = new List<Vector2>();
+        [SerializeField] private List<Vector2> _roomPositions = new List<Vector2>();
         private readonly List<RoomObject> _roomManagers = new List<RoomObject>();
         private readonly List<RoomObject> _combatRooms = new List<RoomObject>();
         private readonly List<RoomObject> _bossRooms = new List<RoomObject>();
@@ -37,6 +37,9 @@ namespace DungeonGenerator.Managers
             {
                 if (_roomPositions.Contains(currentPosition))
                 {
+                    if(dungeonData.RandomJump)
+                        currentPosition = _roomPositions[Random.Range(0, _roomPositions.Count)];
+                    
                     currentPosition += GetRandomDirection((Orientation) Random.Range(0, 4), roomPrefab.size);
                 }
                 else
@@ -56,7 +59,7 @@ namespace DungeonGenerator.Managers
         private IEnumerator SetRoomTypes()
         {
             print("Setting room types.");
-            while (_combatRooms.Count + _bossRooms.Count + _itemRooms.Count != dungeonData.AllRooms-1)
+            while (_combatRooms.Count + _bossRooms.Count + _itemRooms.Count != dungeonData.AllRooms - dungeonData.StartingRoom)
             {
                 _roomManagers[0].SetRoomType(RoomType.Empty);
                 if (_bossRooms.Count != dungeonData.BossRooms)
@@ -99,13 +102,5 @@ namespace DungeonGenerator.Managers
             };
             return new Vector2(direction.x * size.x, direction.y * size.y);
         }
-    }
-
-    public enum Orientation
-    {
-        Up = 0,
-        Down = 1, 
-        Left = 2, 
-        Right = 3
     }
 }

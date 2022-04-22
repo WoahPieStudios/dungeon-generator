@@ -10,6 +10,8 @@ namespace DungeonGenerator.Data
     public class DungeonData : ScriptableObject
     {
         [Header("Room Details")]
+        [SerializeField, Tooltip("Generator selects a random position to walk if it walks over an existing position.")]
+        private bool randomJump;
         [SerializeField, ReadOnly, Tooltip("The number of starting rooms. This is where the player will spawn.")]
         private int startingRoom = 1;
         [SerializeField, Tooltip("The number of combat rooms. All enemies inside these rooms need to be killed in order to proceed.")]
@@ -20,6 +22,19 @@ namespace DungeonGenerator.Data
         private float bossDungeonRange;
         [SerializeField, Tooltip("The number of item rooms. In these rooms, players would only collect items without fighting enemies.")]
         private int itemRooms;
+
+        /// <summary>
+        /// Generator selects a random position to walk if it walks over an existing position.
+        /// </summary>
+        public bool RandomJump => randomJump;
+
+        /// <summary>
+        /// The number of starting rooms.
+        /// </summary>
+        /// <remarks>
+        /// This is where the player will spawn.
+        /// </remarks>
+        public int StartingRoom => startingRoom;
         
         /// <summary>
         /// The number of combat rooms.
