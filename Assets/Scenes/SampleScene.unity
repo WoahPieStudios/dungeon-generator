@@ -152,10 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00c1baaea268ee44a77618ae4203147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dungeonStep: 1
+  dungeonStepDuration: 0.1
   dungeonData: {fileID: 11400000, guid: 2709e9e15bf9b7343bd13ba5609fe74a, type: 2}
   startingPosition: {x: 0, y: 0}
   roomPrefab: {fileID: 8159084527179214466, guid: e4c57ae7add22ff419e3549313bc1ff2, type: 3}
-  roomPositions: []
 --- !u!4 &384624510
 Transform:
   m_ObjectHideFlags: 0

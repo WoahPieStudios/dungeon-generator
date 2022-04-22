@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using DungeonGenerator.Data;
+using DungeonGenerator.Objects;
 using DungeonGenerator.Types;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace DungeonGenerator.Managers
 {
@@ -14,26 +13,29 @@ namespace DungeonGenerator.Managers
         [SerializeField] private bool dungeonStep;
         [SerializeField] private float dungeonStepDuration = 0.1f;
 
+        [Header("Dungeon Settings")]
         [SerializeField] private DungeonData dungeonData;
         [SerializeField] private Vector2 startingPosition = Vector2.zero;
-        [SerializeField] private RoomManager roomPrefab;
-        [SerializeField] private List<Vector2> roomPositions = new List<Vector2>();
-        [SerializeField] private List<RoomManager> roomManagers = new List<RoomManager>();
-        [SerializeField] private List<RoomManager> combatRooms = new List<RoomManager>();
-        [SerializeField] private List<RoomManager> bossRooms = new List<RoomManager>();
-        [SerializeField] private List<RoomManager> itemRooms = new List<RoomManager>();
+        [SerializeField] private RoomObject roomPrefab;
+        
+        [Header("Lists")]
+        private readonly List<Vector2> _roomPositions = new List<Vector2>();
+        private readonly List<RoomObject> _roomManagers = new List<RoomObject>();
+        private readonly List<RoomObject> _combatRooms = new List<RoomObject>();
+        private readonly List<RoomObject> _bossRooms = new List<RoomObject>();
+        private readonly List<RoomObject> _itemRooms = new List<RoomObject>();
 
         private void Start()
         {
-            StartCoroutine(GenerateDungeon());
+            StartCoroutine(GenerateDungeonPositions());
         }
 
-        private IEnumerator GenerateDungeon()
+        private IEnumerator GenerateDungeonPositions()
         {
             var currentPosition = startingPosition;
-            while(roomManagers.Count != dungeonData.AllRooms)
+            while(_roomManagers.Count != dungeonData.AllRooms)
             {
-                if (roomPositions.Contains(currentPosition))
+                if (_roomPositions.Contains(currentPosition))
                 {
                     currentPosition += GetRandomDirection((Orientation) Random.Range(0, 4), roomPrefab.size);
                 }
@@ -41,45 +43,45 @@ namespace DungeonGenerator.Managers
                 {
                     var room = Instantiate(roomPrefab, transform);
                     room.SetPosition(currentPosition);
-                    roomPositions.Add(currentPosition);
-                    roomManagers.Add(room);
+                    _roomPositions.Add(currentPosition);
+                    _roomManagers.Add(room);
                 }
                 yield return new WaitForSeconds(dungeonStep ? dungeonStepDuration : 0f);
             }
 
-            print("Dungeons generated,");
+            print("Dungeons generated.");
             StartCoroutine(SetRoomTypes());
         }
 
         private IEnumerator SetRoomTypes()
         {
             print("Setting room types.");
-            while (combatRooms.Count + bossRooms.Count + itemRooms.Count != dungeonData.AllRooms-1)
+            while (_combatRooms.Count + _bossRooms.Count + _itemRooms.Count != dungeonData.AllRooms-1)
             {
-                roomManagers[0].SetRoomType(RoomType.Empty);
-                if (bossRooms.Count != dungeonData.BossRooms)
+                _roomManagers[0].SetRoomType(RoomType.Empty);
+                if (_bossRooms.Count != dungeonData.BossRooms)
                 {
-                    var roomIndex = Random.Range(1, roomManagers.Count);
-                    var room = roomManagers[roomIndex];
+                    var roomIndex = Random.Range((int) Mathf.Floor(_roomManagers.Count * dungeonData.BossDungeonRange), _roomManagers.Count);
+                    var room = _roomManagers[roomIndex];
                     room.SetRoomType(RoomType.Boss);
-                    bossRooms.Add(room);
-                    roomManagers.Remove(room);
+                    _bossRooms.Add(room);
+                    _roomManagers.Remove(room);
                 }
-                if (itemRooms.Count != dungeonData.ItemRooms)
+                if (_itemRooms.Count != dungeonData.ItemRooms)
                 {
-                    var roomIndex = Random.Range(1, roomManagers.Count);
-                    var room = roomManagers[roomIndex];
+                    var roomIndex = Random.Range(1, _roomManagers.Count);
+                    var room = _roomManagers[roomIndex];
                     room.SetRoomType(RoomType.Item);
-                    itemRooms.Add(room);
-                    roomManagers.Remove(room);
+                    _itemRooms.Add(room);
+                    _roomManagers.Remove(room);
                 }
-                if (combatRooms.Count != dungeonData.CombatRooms)
+                if (_combatRooms.Count != dungeonData.CombatRooms)
                 {
-                    var roomIndex = Random.Range(1, roomManagers.Count);
-                    var room = roomManagers[roomIndex];
+                    var roomIndex = Random.Range(1, _roomManagers.Count);
+                    var room = _roomManagers[roomIndex];
                     room.SetRoomType(RoomType.Combat);
-                    combatRooms.Add(room);
-                    roomManagers.Remove(room);
+                    _combatRooms.Add(room);
+                    _roomManagers.Remove(room);
                 }
                 yield return new WaitForSeconds(dungeonStep ? dungeonStepDuration : 0f);
             }

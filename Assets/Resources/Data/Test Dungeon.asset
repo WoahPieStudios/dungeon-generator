@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Test Dungeon
   m_EditorClassIdentifier: 
   startingRoom: 1
-  combatRooms: 15
-  bossRooms: 1
-  itemRooms: 5
+  combatRooms: 10
+  bossRooms: 3
+  bossDungeonRange: 0.865
+  itemRooms: 7

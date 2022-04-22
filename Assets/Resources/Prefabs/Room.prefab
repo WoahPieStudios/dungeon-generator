@@ -97,3 +97,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomType: 0
   spriteRenderer: {fileID: 0}
+  size: {x: 1, y: 1}
+  position: {x: 0, y: 0}

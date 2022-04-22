@@ -3,9 +3,9 @@ using DungeonGenerator.Extensions;
 using DungeonGenerator.Types;
 using UnityEngine;
 
-namespace DungeonGenerator.Managers
+namespace DungeonGenerator.Objects
 {
-    public class RoomManager : MonoBehaviour
+    public class RoomObject : MonoBehaviour
     {
         public RoomType roomType;
         [SerializeField] private SpriteRenderer spriteRenderer;
@@ -44,6 +44,12 @@ namespace DungeonGenerator.Managers
         {
             position = newPosition;
             transform.position = position;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(transform.position,size);
         }
     }
 }

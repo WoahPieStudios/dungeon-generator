@@ -16,6 +16,8 @@ namespace DungeonGenerator.Data
         private int combatRooms;
         [SerializeField, Tooltip("The number of boss rooms. Only one room will be selected as the end of the dungeon.")]
         private int bossRooms;
+        [SerializeField, Range(0.5f, 0.95f), Tooltip("The range which the boss room will spawn. The larger the number, the closer the boss room would be to the final room created")]
+        private float bossDungeonRange;
         [SerializeField, Tooltip("The number of item rooms. In these rooms, players would only collect items without fighting enemies.")]
         private int itemRooms;
         
@@ -47,5 +49,13 @@ namespace DungeonGenerator.Data
         /// The number of all rooms in the dungeon.
         /// </summary>
         public int AllRooms => startingRoom + combatRooms + bossRooms + itemRooms;
+
+        /// <summary>
+        /// The range which the boss room will spawn.
+        /// </summary>
+        /// <remarks>
+        /// The larger the number, the closer the boss room would be to the final room created
+        /// </remarks>
+        public float BossDungeonRange => bossDungeonRange;
     }
 }
