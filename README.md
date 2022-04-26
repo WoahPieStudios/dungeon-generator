@@ -33,3 +33,8 @@
 - If the player is unable to complete the dungeon ...
 
 - Upon completion of a dungeon ...
+
+### Setup
+
+- Each floor is set up as a grid, with each coordinate being a room.
+  ![](Documentation/Images/Setup/dungeon-grid.gif)

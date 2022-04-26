@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace DungeonGenerator.Managers
 {
-    public class DungeonManager : MonoBehaviour
+    public class DungeonManagerOld : MonoBehaviour
     {
         [Header("Debugging")]
         [SerializeField] private bool dungeonStep;
