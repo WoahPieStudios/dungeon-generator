@@ -9,9 +9,11 @@ namespace DungeonGenerator.Data
     [CreateAssetMenu(fileName = "Dungeon Data 01", menuName = "Dungeon Generator/New Dungeon Data")]
     public class DungeonData : ScriptableObject
     {
-        [Header("Room Details")]
+        [Header("Properties")]
         [SerializeField, Tooltip("Generator selects a random position to walk if it walks over an existing position.")]
         private bool randomJump;
+        
+        [Header("Room Details")]
         [SerializeField, ReadOnly, Tooltip("The number of starting rooms. This is where the player will spawn.")]
         private int startingRoom = 1;
         [SerializeField, Tooltip("The number of combat rooms. All enemies inside these rooms need to be killed in order to proceed.")]

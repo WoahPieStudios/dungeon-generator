@@ -9,7 +9,7 @@ namespace DungeonGenerator.Managers
 {
     public class DungeonManager : MonoBehaviour
     {
-        [Header("Debugging")] 
+        [Header("Debugging")]
         [SerializeField] private bool dungeonStep;
         [SerializeField] private float dungeonStepDuration = 0.1f;
 
@@ -17,9 +17,9 @@ namespace DungeonGenerator.Managers
         [SerializeField] private DungeonData dungeonData;
         [SerializeField] private Vector2 startingPosition = Vector2.zero;
         [SerializeField] private RoomObject roomPrefab;
-        
+
         [Header("Lists")]
-        [SerializeField] private List<Vector2> _roomPositions = new List<Vector2>();
+        private readonly List<Vector2> _roomPositions = new List<Vector2>();
         private readonly List<RoomObject> _roomManagers = new List<RoomObject>();
         private readonly List<RoomObject> _combatRooms = new List<RoomObject>();
         private readonly List<RoomObject> _bossRooms = new List<RoomObject>();
@@ -33,14 +33,12 @@ namespace DungeonGenerator.Managers
         private IEnumerator GenerateDungeonPositions()
         {
             var currentPosition = startingPosition;
-            while(_roomManagers.Count != dungeonData.AllRooms)
+            while (_roomManagers.Count != dungeonData.AllRooms)
             {
                 if (_roomPositions.Contains(currentPosition))
                 {
-                    if(dungeonData.RandomJump)
+                    if (dungeonData.RandomJump)
                         currentPosition = _roomPositions[Random.Range(0, _roomPositions.Count)];
-                    
-                    currentPosition += GetRandomDirection((Orientation) Random.Range(0, 4), roomPrefab.size);
                 }
                 else
                 {
@@ -49,6 +47,7 @@ namespace DungeonGenerator.Managers
                     _roomPositions.Add(currentPosition);
                     _roomManagers.Add(room);
                 }
+                currentPosition += GetRandomDirection((Orientation)Random.Range(0, 4), roomPrefab.size);
                 yield return new WaitForSeconds(dungeonStep ? dungeonStepDuration : 0f);
             }
 
@@ -64,7 +63,7 @@ namespace DungeonGenerator.Managers
                 _roomManagers[0].SetRoomType(RoomType.Empty);
                 if (_bossRooms.Count != dungeonData.BossRooms)
                 {
-                    var roomIndex = Random.Range((int) Mathf.Floor(_roomManagers.Count * dungeonData.BossDungeonRange), _roomManagers.Count);
+                    var roomIndex = Random.Range((int)Mathf.Floor(_roomManagers.Count * dungeonData.BossDungeonRange), _roomManagers.Count);
                     var room = _roomManagers[roomIndex];
                     room.SetRoomType(RoomType.Boss);
                     _bossRooms.Add(room);
