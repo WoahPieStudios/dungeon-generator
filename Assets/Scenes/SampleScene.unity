@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e44d0dd58f5d7b4eb6c0108c7b1cf9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonSize: {x: 1, y: 1}
-  roomSize: {x: 1, y: 1}
+  floorData: {fileID: 11400000, guid: d62f4fdaaee8ea34ca73b8e1de5990f3, type: 2}
+  seed: 
 --- !u!4 &384624510
 Transform:
   m_ObjectHideFlags: 0
