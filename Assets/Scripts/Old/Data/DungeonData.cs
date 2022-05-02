@@ -1,7 +1,7 @@
-﻿using DungeonGenerator.Old.Extensions;
+﻿using Old.Extensions;
 using UnityEngine;
 
-namespace DungeonGenerator.Old.Data
+namespace Old.Data
 {
     /// <summary>
     /// Contains the amount of rooms for the dungeon.

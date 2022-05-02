@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using DungeonGenerator.Old.Data;
-using DungeonGenerator.Old.Objects;
-using DungeonGenerator.Old.Types;
+using Old.Data;
+using Old.Objects;
+using Old.Types;
 using UnityEngine;
 
-namespace DungeonGenerator.Old.Managers
+namespace Old.Managers
 {
     public class DungeonManagerOld : MonoBehaviour
     {

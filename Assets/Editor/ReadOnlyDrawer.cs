@@ -1,4 +1,4 @@
-using DungeonGenerator.Old.Extensions;
+using Old.Extensions;
 using UnityEngine;
 using UnityEditor;
 

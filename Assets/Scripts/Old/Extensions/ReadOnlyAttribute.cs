@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DungeonGenerator.Old.Extensions
+namespace Old.Extensions
 {
     /// <summary>
     /// Fields with the ReadOnly attribute will not be modified in the inspector.

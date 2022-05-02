@@ -1,4 +1,4 @@
-﻿namespace DungeonGenerator.Old.Types
+﻿namespace Old.Types
 {
     public enum Orientation
     {

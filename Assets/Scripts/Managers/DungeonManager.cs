@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DungeonGenerator.Managers
+namespace Managers
 {
     public class DungeonManager : MonoBehaviour
     {
