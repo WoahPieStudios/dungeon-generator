@@ -15,16 +15,7 @@ namespace DungeonGenerator.Managers
 
             Random.InitState(seed.GetHashCode());
 
-            int[] numbers = new int[10];
-            string numberText = string.Empty;
             
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                numbers[i] = Random.Range(0, 100);
-                numberText += $"{numbers[i]} ";
-            }
-            
-            Debug.Log(numberText);
         }
 
         public void SaveSeed()
