@@ -12,10 +12,12 @@ namespace DungeonGenerator.Editor
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
+            
             FloorManager floorManager = (FloorManager) target;
             
             if (GUILayout.Button("Generate Floor")) floorManager.GenerateFloor();
-
+            if (GUILayout.Button("Clear Floor")) floorManager.ClearFloor();
+            
             using (new GUILayout.HorizontalScope()){
                 
                 if (GUILayout.Button("Save Seed")) floorManager.SaveSeed();

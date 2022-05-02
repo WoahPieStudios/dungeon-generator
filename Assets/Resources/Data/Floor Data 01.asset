@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seed: 
   floorSize: {x: 1, y: 1}
-  roomSize: {x: 1, y: 1}
+  startingPosition: {x: 0, y: 0}
   gizmoColor: {r: 1, g: 1, b: 1, a: 1}

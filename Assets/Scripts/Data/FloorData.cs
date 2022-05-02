@@ -8,20 +8,20 @@ namespace DungeonGenerator.Data
         [Header("Properties")]
         [SerializeField] private string seed;
         [SerializeField] private Vector2 floorSize = Vector2.one;
-        [SerializeField] private Vector2 roomSize = Vector2.one;
+        [SerializeField] private Vector2 startingPosition = Vector2.zero;
         
         [Header("Debugging")]
         [SerializeField] private Color gizmoColor = Color.white;
 
         public string Seed => seed;
         public Vector2 FloorSize => floorSize;
-        public Vector2 RoomSize => roomSize;
+        public Vector2 StartingPosition => startingPosition;
         public Color GizmoColor => gizmoColor;
 
         private void Reset()
         {
             floorSize = Vector2.one;
-            roomSize = Vector2.one;
+            startingPosition = Vector2.zero;
             seed = string.Empty;
             gizmoColor = Color.white;
         }

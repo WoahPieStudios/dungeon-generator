@@ -154,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorData: {fileID: 11400000, guid: d62f4fdaaee8ea34ca73b8e1de5990f3, type: 2}
   seed: 
+  roomHandlerPrefab: {fileID: 8449924494748963861, guid: 805d3742044a5144d9b0a6fdc50419fe, type: 3}
+  rooms: []
 --- !u!4 &384624510
 Transform:
   m_ObjectHideFlags: 0
