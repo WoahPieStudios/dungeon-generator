@@ -6,7 +6,7 @@ namespace DungeonGenerator.Old.Data
     /// <summary>
     /// Contains the amount of rooms for the dungeon.
     /// </summary>
-    [CreateAssetMenu(fileName = "Dungeon Data 01", menuName = "Dungeon Generator/New Dungeon Data")]
+    // [CreateAssetMenu(fileName = "Dungeon Data 01", menuName = "Dungeon Generator/New Dungeon Data")]
     public class DungeonData : ScriptableObject
     {
         [Header("Properties")]
