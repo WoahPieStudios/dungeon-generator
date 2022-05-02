@@ -1,6 +1,6 @@
 {
     "name": "WoahPieStudios.DungeonGenerator.Old",
-    "rootNamespace": "DungeonGenerator.Old",
+    "rootNamespace": "DungeonGenerator",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
