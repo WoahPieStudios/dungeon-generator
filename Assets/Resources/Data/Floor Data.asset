@@ -10,9 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cdb955e9c4eb4dc59118032ea21e61fe, type: 3}
-  m_Name: Floor Data 01
+  m_Name: Floor Data
   m_EditorClassIdentifier: 
-  seed: 
-  floorSize: {x: 1, y: 1}
-  startingPosition: {x: 0, y: 0}
-  gizmoColor: {r: 1, g: 1, b: 1, a: 1}
+  seed: 3x31Zw
+  floorSize: {x: 5, y: 5}

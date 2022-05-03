@@ -3,7 +3,7 @@ namespace DungeonGenerator.Tools
     /// <summary>
     /// Generates a random string.
     /// </summary>
-    public class RandomStringGenerator
+    public static class RandomStringGenerator
     {
         /// <summary>
         /// Contains all of the symbols for the string generator.

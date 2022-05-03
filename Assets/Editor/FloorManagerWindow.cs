@@ -1,4 +1,5 @@
-﻿using DungeonGenerator.Managers;
+﻿using DungeonGenerator.Data;
+using DungeonGenerator.Managers;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,12 +18,33 @@ namespace DungeonGenerator.Editor
             
             if (GUILayout.Button("Generate Floor")) floorManager.GenerateFloor();
             if (GUILayout.Button("Clear Floor")) floorManager.ClearFloor();
-            
-            using (new GUILayout.HorizontalScope()){
-                
-                if (GUILayout.Button("Save Seed")) floorManager.SaveSeed();
-                if (GUILayout.Button("Clear Seed")) floorManager.ClearSeed();
+            if (GUILayout.Button("Save to Scriptable Object")) CreateFloorData(floorManager);
+        }
+
+        private void CreateFloorData(FloorManager floorManager)
+        {
+            FloorData floorData = floorManager.FloorData == null ? CreateInstance<FloorData>() : floorManager.FloorData;
+
+            if (string.IsNullOrEmpty(floorManager.Seed))
+            {
+                Debug.LogWarning("Please generate a floor first before saving to a scriptable object.");
+                return;
             }
+            
+            floorData.seed = floorManager.Seed;
+            floorData.floorSize = floorManager.FloorSize;
+
+            string path = floorManager.FloorData == null ? AssetDatabase.GenerateUniqueAssetPath("Assets/Resources/Data/Floor Data.asset") : $"Assets/Resources/Data/{floorData.name}.asset";
+
+            if(floorManager.FloorData == null) AssetDatabase.CreateAsset(floorData, path);
+
+            AssetDatabase.SaveAssets();
+            
+            EditorUtility.FocusProjectWindow();
+
+            Selection.activeObject = floorData;
+            
+            Debug.Log($"Floor data saved at: {path}");
         }
     }
 }

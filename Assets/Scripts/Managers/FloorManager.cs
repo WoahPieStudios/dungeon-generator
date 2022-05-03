@@ -8,21 +8,27 @@ namespace DungeonGenerator.Managers
 {
     public class FloorManager : MonoBehaviour
     {
+        [Header("Properties")]
         [SerializeField] private FloorData floorData;
         [SerializeField] private string seed;
+        [SerializeField] private Vector2 floorSize = Vector2.one;
         [SerializeField] private RoomHandler roomHandlerPrefab;
+        
+        [Header("Visualization")]
+        [SerializeField] private Color gizmoColor = Color.white;
+
         [SerializeField] private List<RoomHandler> rooms = new List<RoomHandler>();
+
+        public FloorData FloorData => floorData;
+        public string Seed => seed;
+        public Vector2 FloorSize => floorSize;
 
         public void GenerateFloor()
         {
-            if (floorData == null)
-            {
-                Debug.LogWarning("No floor data found, please provide a floor data to the floor manager.");
-                return;
-            }
-            
-            seed = string.IsNullOrEmpty(floorData.Seed) ? RandomStringGenerator.GenerateString() : floorData.Seed;
+            ClearFloor();
 
+            if (string.IsNullOrEmpty(seed)) seed = floorData == null ? RandomStringGenerator.GenerateString() : floorData.seed;
+            
             Random.InitState(seed.GetHashCode());
 
             if (roomHandlerPrefab == null)
@@ -33,14 +39,15 @@ namespace DungeonGenerator.Managers
             
             Vector2 currentPosition = Vector2.zero;
 
-            for (int i = 0; i < floorData.FloorSize.y; i++)
+            for (int i = 0; i < floorSize.y; i++)
             {
-                for (int j = 0; j < floorData.FloorSize.x; j++)
+                for (int j = 0; j < floorSize.x; j++)
                 {
                     currentPosition.x = j;
                     currentPosition.y = i;
 
                     var room = Instantiate(roomHandlerPrefab, currentPosition * roomHandlerPrefab.Size, Quaternion.identity, transform);
+                    
                     rooms.Add(room);
                 }
             }
@@ -48,54 +55,26 @@ namespace DungeonGenerator.Managers
 
         public void ClearFloor()
         {
-            foreach (var room in rooms)
-            {
-                DestroyImmediate(room.gameObject);
-            }
+            foreach (var room in rooms) DestroyImmediate(room.gameObject);
             rooms.Clear();
-            ClearSeed();
-        }
-        
-        public void SaveSeed()
-        {
-            if (string.IsNullOrEmpty(seed))
-                Debug.LogWarning("No seed found, please generate a room first");
-            else
-            {
-                floorData.SaveSeed(seed);
-                Debug.Log($"Seed saved to {floorData.name}");
-            }
+            seed = string.Empty;
         }
 
-        public void ClearSeed()
-        {
-            seed = string.Empty;
-            
-            if (string.IsNullOrEmpty(seed)) return;
-            floorData.SaveSeed(seed);
-            Debug.Log($"Seed cleared from {floorData.name}");
-        }
-        
         private void OnDrawGizmos()
         {
-            // Prevents the gizmos from drawing while there is no data yet.
-            if (floorData == null)
-            {
-                Debug.LogWarning("No floor data found, please provide a floor data to the floor manager.");
-                return;
-            }
-            
             if (roomHandlerPrefab == null)
             {
                 Debug.LogWarning("No room prefab found, please provide a room to the floor manager.");
                 return;
             }
             
-            Gizmos.color = floorData.GizmoColor;
+            Gizmos.color = gizmoColor;
+            
             Vector2 drawPosition = Vector2.zero;
-            for (int i = 0; i < floorData.FloorSize.y; i++)
+            
+            for (int i = 0; i < floorSize.y; i++)
             {
-                for (int j = 0; j < floorData.FloorSize.x; j++)
+                for (int j = 0; j < floorSize.x; j++)
                 {
                     drawPosition.x = j;
                     drawPosition.y = i;
