@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using DungeonGenerator.Data;
-using DungeonGenerator.Objects;
-using DungeonGenerator.Types;
+using DungeonGenerator.Old.Data;
+using DungeonGenerator.Old.Objects;
+using DungeonGenerator.Old.Types;
 using UnityEngine;
 
-namespace DungeonGenerator.Managers
+namespace DungeonGenerator.Old.Managers
 {
-    public class DungeonManager : MonoBehaviour
+    public class DungeonManagerOld : MonoBehaviour
     {
         [Header("Debugging")]
         [SerializeField] private bool dungeonStep;

@@ -2,9 +2,11 @@
 {
     public enum RoomType
     {
-        Empty = 0,
-        Combat = 1,
+        Start = 0,
+        Enemy = 1,
         Boss = 2,
-        Item = 3
+        Chest = 3,
+        Shop = 4,
+        Special = 5
     }
 }

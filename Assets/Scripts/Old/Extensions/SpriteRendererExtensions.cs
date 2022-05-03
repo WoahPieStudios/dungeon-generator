@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DungeonGenerator.Extensions
+namespace DungeonGenerator.Old.Extensions
 {
     public static class SpriteRendererExtensions
     {

@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 384624510}
   - component: {fileID: 384624509}
   m_Layer: 0
-  m_Name: Dungeon Manager
+  m_Name: Floor Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,14 +149,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 384624508}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f00c1baaea268ee44a77618ae4203147, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e44d0dd58f5d7b4eb6c0108c7b1cf9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonStep: 1
-  dungeonStepDuration: 0.1
-  dungeonData: {fileID: 11400000, guid: 2709e9e15bf9b7343bd13ba5609fe74a, type: 2}
-  startingPosition: {x: 0, y: 0}
-  roomPrefab: {fileID: 8159084527179214466, guid: e4c57ae7add22ff419e3549313bc1ff2, type: 3}
+  floorData: {fileID: 0}
+  seed: 
+  floorSize: {x: 3, y: 3}
+  roomHandlerPrefab: {fileID: 646998420332108876, guid: 805d3742044a5144d9b0a6fdc50419fe, type: 3}
+  gizmoColor: {r: 1, g: 1, b: 1, a: 1}
+  rooms: []
 --- !u!4 &384624510
 Transform:
   m_ObjectHideFlags: 0

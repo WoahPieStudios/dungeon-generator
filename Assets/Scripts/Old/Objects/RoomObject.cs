@@ -1,9 +1,9 @@
 ﻿using System;
-using DungeonGenerator.Extensions;
-using DungeonGenerator.Types;
+using DungeonGenerator.Old.Extensions;
+using DungeonGenerator.Old.Types;
 using UnityEngine;
 
-namespace DungeonGenerator.Objects
+namespace DungeonGenerator.Old.Objects
 {
     public class RoomObject : MonoBehaviour
     {
