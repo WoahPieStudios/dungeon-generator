@@ -12,13 +12,14 @@ namespace DungeonGenerator.Editor
     {
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
+            // Hide inspector elements thread: http://answers.unity.com/answers/1297701/view.html
             
             FloorManager floorManager = (FloorManager) target;
-            
+
+            base.OnInspectorGUI();            
             if (GUILayout.Button("Generate Floor")) floorManager.GenerateFloor();
             if (GUILayout.Button("Clear Floor")) floorManager.ClearFloor();
-            if (GUILayout.Button("Save to Scriptable Object")) CreateFloorData(floorManager);
+            //if (GUILayout.Button("Save to Scriptable Object")) CreateFloorData(floorManager);
         }
 
         private void CreateFloorData(FloorManager floorManager)

@@ -1,4 +1,5 @@
-﻿using DungeonGenerator.Types;
+﻿using System;
+using DungeonGenerator.Types;
 using UnityEngine;
 
 namespace DungeonGenerator.Handlers
@@ -8,6 +9,7 @@ namespace DungeonGenerator.Handlers
         [SerializeField] private Vector2 size;
         [SerializeField] private RoomTypes roomType;
         [SerializeField] private DoorDirections doorDirections;
+        [SerializeField] private SpriteRenderer spriteRenderer;
 
         public Vector2 Size => size;
 
@@ -31,6 +33,15 @@ namespace DungeonGenerator.Handlers
         public void SetDoorDirections(DoorDirections directions)
         {
             doorDirections = directions;
+
+            float colorValue = 0f;
+            
+            if(doorDirections.HasFlag(DoorDirections.Up)) colorValue += 0.25f;
+            if(doorDirections.HasFlag(DoorDirections.Down)) colorValue += 0.25f;
+            if(doorDirections.HasFlag(DoorDirections.Left)) colorValue += 0.25f;
+            if(doorDirections.HasFlag(DoorDirections.Right)) colorValue += 0.25f;
+
+            spriteRenderer.color = Color.Lerp(Color.black, Color.white, colorValue);
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using DungeonGenerator.Data;
 using DungeonGenerator.Handlers;
 using DungeonGenerator.Tools;
+using DungeonGenerator.Types;
 using UnityEngine;
 
 namespace DungeonGenerator.Managers
@@ -48,9 +49,26 @@ namespace DungeonGenerator.Managers
 
                     var room = Instantiate(roomHandlerPrefab, currentPosition * roomHandlerPrefab.Size, Quaternion.identity, transform);
                     
+                    room.name = $"Room {currentPosition}";
+                    
+                    // Sets the directions to everything
+                    DoorDirections directions = (DoorDirections) ~0;
+                    
+                    // Cull the unused directions depending on the position of the room
+                    if (currentPosition.x == 0) directions ^= DoorDirections.Left;
+                    if (currentPosition.y == 0) directions ^= DoorDirections.Down;
+                    if (currentPosition.x == floorSize.x - 1) directions ^= DoorDirections.Right;
+                    if (currentPosition.y == floorSize.y - 1) directions ^= DoorDirections.Up;
+                    
+                    room.SetDoorDirections(directions);
+
+                    print($"{room.name}: Door Directions: {directions}");
+
                     rooms.Add(room);
                 }
             }
+            
+            
         }
 
         public void ClearFloor()
