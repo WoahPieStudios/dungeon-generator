@@ -51,10 +51,13 @@ namespace DungeonGenerator.Managers
                     
                     room.name = $"Room {currentPosition}";
                     
+                    room.SetPosition(currentPosition);
+                    
                     // Sets the directions to everything
                     DoorDirections directions = (DoorDirections) ~0;
                     
                     // Cull the unused directions depending on the position of the room
+                    // The following culls the directions of the rooms found on the borders
                     if (currentPosition.x == 0) directions ^= DoorDirections.Left;
                     if (currentPosition.y == 0) directions ^= DoorDirections.Down;
                     if (currentPosition.x == floorSize.x - 1) directions ^= DoorDirections.Right;
@@ -67,8 +70,17 @@ namespace DungeonGenerator.Managers
                     rooms.Add(room);
                 }
             }
-            
-            
+
+            Vector2 startingPosition = new Vector2(Random.Range(0, Mathf.FloorToInt(floorSize.x)), Random.Range(0, Mathf.FloorToInt(floorSize.y)));
+
+            foreach (var room in rooms)
+            {
+                if (room.Position == startingPosition)
+                {
+                    room.SetRoomType(RoomType.Start);
+                    room.SetColor(Color.green);
+                }
+            }
         }
 
         public void ClearFloor()
@@ -78,7 +90,7 @@ namespace DungeonGenerator.Managers
             seed = string.Empty;
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             if (roomHandlerPrefab == null)
             {

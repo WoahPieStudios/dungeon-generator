@@ -1,6 +1,6 @@
 ﻿namespace DungeonGenerator.Types
 {
-    public enum RoomTypes
+    public enum RoomType
     {
         Start = 0,
         Enemy = 1,

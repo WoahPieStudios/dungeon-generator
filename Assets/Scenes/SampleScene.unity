@@ -152,10 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e44d0dd58f5d7b4eb6c0108c7b1cf9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorData: {fileID: 11400000, guid: 33f6ccfa39338d947a62c9d8f9517349, type: 2}
+  floorData: {fileID: 0}
   seed: 
   floorSize: {x: 3, y: 3}
-  roomHandlerPrefab: {fileID: 8449924494748963861, guid: 805d3742044a5144d9b0a6fdc50419fe, type: 3}
+  roomHandlerPrefab: {fileID: 646998420332108876, guid: 805d3742044a5144d9b0a6fdc50419fe, type: 3}
   gizmoColor: {r: 1, g: 1, b: 1, a: 1}
   rooms: []
 --- !u!4 &384624510
